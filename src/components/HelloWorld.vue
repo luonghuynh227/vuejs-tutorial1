@@ -1,59 +1,116 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router" target="_blank" rel="noopener">router</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex" target="_blank" rel="noopener">vuex</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <div class="left">
+      <h1>{{title}}</h1>
+      <form @submit.prevent="addLink">
+        <input type="text" class="link-input" placeholder="Add a link" v-model="newLink">
+      </form>
+      <ul>
+        <li v-for="(link, index) in links" :key="index">
+          <a :href="link">{{link}}</a>
+          <button @click="removeLinks(index)" class="rm">Remove Link</button>
+        </li>
+      </ul>
+    </div>
+    <div class="right">
+      <Stats/>
+    </div>
   </div>
 </template>
 
 <script>
+import Stats from '@/components/Stats.vue'
+import {mapState, mapMutations, mapActions} from 'vuex'
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
+  data() {
+    return {
+      newLink: '',
+    }
+  },
+  components: {
+    Stats,
+  },
+  computed: {
+    ...mapState([
+      'title',
+      'links',
+    ])
+  },
+  methods: {
+    ...mapMutations([
+      'ADD_LINK',
+    ]),
+    ...mapActions([
+      'removeLink',
+    ]),
+    addLink: function() {
+      this.ADD_LINK(this.newLink)
+      this.newLink = ''
+    },
+    removeLinks(link) {
+      this.removeLink(link)
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
+<style>
+  html, #app, .home {
+    height: 100%;
+  }
+  body {
+    background-color: #F4F4F4;
+    margin: 0;
+    height: 100%;
+  }
+
+  .hello {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 100%;
+    grid-template-areas: "left right";
+    height: 100%;
+  }
+
+  .left, .right {
+    padding: 30px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  ul li {
+    padding: 20px;
+    background: white;
+    margin-bottom: 8px;
+  }
+
+  .right {
+    grid-area: right;
+    background-color: #E9E9E9;
+  }
+  
+  input {
+    border: none;
+    padding: 20px;
+    width: calc(100% - 40px);
+    box-shadow: 0 5px 5px lightgrey;
+    margin-bottom: 50px;
+    outline: none;
+  }
+  .rm {
+    float: right;
+    font-size: .8rem;
+    background: #8ac007;
+    border: 0;
+    padding: 5px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
 </style>
