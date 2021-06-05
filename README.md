@@ -1,3 +1,4 @@
+<img src="./screen.png">
 # vuexstate
 
 ## Project setup
