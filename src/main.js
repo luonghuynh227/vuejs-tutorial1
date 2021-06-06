@@ -6,7 +6,7 @@ import store from './store'
 // import dropdown from '../node_modules/vue-simple-search-dropdown/dist/vue-simple-search-dropdown'
 // import vuetify from '../node_modules/vuetify'
 import VModal from 'vue-js-modal'
-import 'vue-js-modal/dist/styles.css'
+// import 'vue-js-modal/dist/styles.css'
 // import BootstrapVue from 'bootstrap-vue'
 
 import Dropdown from "vue-simple-search-dropdown";
