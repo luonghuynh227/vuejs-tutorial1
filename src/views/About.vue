@@ -161,7 +161,9 @@
         <button @click="removeImage">Remove image</button>
       </div>
       <div v-else>
-        <input type="file" @change="onFileChange" />
+        <!-- <input type="file" @change="onFileChange" /> -->
+        <button @click="$refs.fileInput.click()" class="trigger">Choose image</button>
+  <input style="display: none;"  type="file" ref="fileInput" @change="onFileChange"/>
       </div>
       
       
