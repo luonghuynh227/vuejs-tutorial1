@@ -5,8 +5,14 @@ import router from './router'
 import store from './store'
 // import dropdown from '../node_modules/vue-simple-search-dropdown/dist/vue-simple-search-dropdown'
 // import vuetify from '../node_modules/vuetify'
+import VModal from 'vue-js-modal'
+import 'vue-js-modal/dist/styles.css'
+// import BootstrapVue from 'bootstrap-vue'
 
-createApp(App).use(store).use(router).mount('#app')
+import Dropdown from "vue-simple-search-dropdown";
+// import CustomGoogleAutocomplete from 'vue-custom-google-autocomplete'
+
+createApp(App).use(store, Dropdown, VModal).use(router).mount('#app')
 // const root= new Vue({
 //   store,
 //   router,
