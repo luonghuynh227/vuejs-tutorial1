@@ -224,7 +224,7 @@ export default {
       var vm = this;
 
       reader.onload = (e) => {
-        this.form.fileAvatar = e.target.result;
+        vm.form.fileAvatar = e.target.result;
       };
       reader.readAsDataURL(file);
     },
