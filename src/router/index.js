@@ -28,6 +28,11 @@ const routes = [
     name: 'Search',
     component: () => import(/* webpackChunkName: "about" */ '../views/Search.vue')
   },
+  {
+    path: '/search-auto',
+    name: 'SearchAuto',
+    component: () => import(/* webpackChunkName: "about" */ '../views/SearchAuto.vue')
+  },
 ]
 
 const router = createRouter({

@@ -8,6 +8,9 @@ import store from './store'
 import VModal from 'vue-js-modal'
 // import 'vue-js-modal/dist/styles.css'
 // import BootstrapVue from 'bootstrap-vue'
+// import VueSingleSelect from "vue-single-select";
+
+// Vue.component('vue-single-select', VueSingleSelect);
 
 import Dropdown from "vue-simple-search-dropdown";
 // import CustomGoogleAutocomplete from 'vue-custom-google-autocomplete'
