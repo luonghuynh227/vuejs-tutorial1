@@ -1,0 +1,15 @@
+# Change yourdomain.com to be your main domain.
+RewriteCond %{HTTP_HOST} ^(www.)?http://localhost:8080$
+  
+# Change 'subfolder' to be the folder you will use for your main domain.
+RewriteCond %{REQUEST_URI} !^/about/
+  
+# Don't change this line.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+  
+# Change 'subfolder' to be the folder you will use for your main domain.
+RewriteRule ^(.*)$ /about/$1
+
+RewriteCond %{HTTP_HOST} ^(www.)?http://localhost:8080$
+RewriteRule ^(/)?$ /about [L]
